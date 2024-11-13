@@ -1,0 +1,4 @@
+#chatDrawer {
+  width: 100%; /* Ajuste para pantallas pequeñas */
+  max-width: 20rem; /* Ajuste para pantallas grandes */
+}

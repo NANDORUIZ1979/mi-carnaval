@@ -1,0 +1,18 @@
+<!-- Drawer (Panel deslizante) -->
+<div id="chatDrawer" class="fixed inset-y-0 right-0 w-80 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-20">
+  <div class="p-4 border-b flex justify-between items-center">
+    <h2 class="text-lg font-semibold text-gray-800">Chat</h2>
+    <button id="closeDrawer" (click)="closeDrawer()" class="text-gray-600 hover:text-gray-800">
+      <!-- SVG del icono de cerrar -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+  <div class="p-4">
+    <div class="text-gray-600 text-sm">
+      <p>Bienvenido al chat de Mi Carnaval. ¿En qué podemos ayudarte?</p>
+    </div>
+    <input type="text" placeholder="Escribe tu mensaje..." class="w-full mt-4 p-2 border rounded-md">
+  </div>
+</div>

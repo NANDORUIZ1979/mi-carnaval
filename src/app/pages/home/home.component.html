@@ -1,0 +1,13 @@
+<main class="w-full flex justify-center">
+  <div class="w-11/12 max-w-md space-y-4">
+    <!-- Tarjetas -->
+    @for (item of cards; track $index) {
+      <app-card
+        image="{{item.image}}"
+        title="{{item.title}}"
+        description="{{item.description}}"
+        />
+    }
+
+  </div>
+</main>
