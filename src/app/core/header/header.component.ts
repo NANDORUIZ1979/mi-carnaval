@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ChatIaComponent } from "../../shared/chat-ia/chat-ia.component";
+import { ChatIaComponent } from "../../shared/components/chat-ia/chat-ia.component";
 
 @Component({
   selector: 'app-header',

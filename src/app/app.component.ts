@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterLinkWithHref, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./core/header/header.component";
 import { NavMenuComponent } from "./core/nav-menu/nav-menu.component";
-import { CardComponent } from "./shared/card/card.component";
+import { CardComponent } from "./shared/components/card/card.component";
 import { HomeComponent } from "./pages/home/home.component";
 
 @Component({
