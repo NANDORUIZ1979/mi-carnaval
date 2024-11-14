@@ -1,6 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import * as L from 'leaflet';
 import { FinderInputComponent } from "../../shared/components/finder-input/finder-input.component";
 import { LocationsService } from '../../shared/services/locations.service';
 
@@ -30,19 +29,19 @@ export class StoreLocationComponent implements OnInit {
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      import('leaflet').then((L) => { this.loadConfigMap(L); });
+      import('leaflet').then((leaflet) => { this.loadConfigMap(leaflet); });
     }
   }
 
-  loadConfigMap(L: any): void {
-    console.log(this.latitude, this.longitude);
-    this.map = L.map('map').setView([this.latitude, this.longitude], 13);
+  loadConfigMap(leaflet: any): void {
+    console.log('User position: ', this.latitude + ', ' + this.longitude);
+    this.map = leaflet.map('map').setView([this.latitude, this.longitude], 13);
 
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    leaflet.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap'
     }).addTo(this.map);
 
-    L.marker([this.latitude, this.longitude]).addTo(this.map)
+    leaflet.marker([this.latitude, this.longitude]).addTo(this.map)
     .bindPopup('Disfrutas desde este lugar')
     .openPopup();
   }
