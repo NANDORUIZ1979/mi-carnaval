@@ -1,11 +1,12 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import * as L from 'leaflet';
+import { FinderInputComponent } from "../../shared/finder-input/finder-input.component";
 
 @Component({
   selector: 'app-store-location',
   standalone: true,
-  imports: [],
+  imports: [FinderInputComponent],
   templateUrl: './store-location.component.html',
   styleUrl: './store-location.component.css'
 })
@@ -26,34 +27,12 @@ export class StoreLocationComponent implements OnInit {
   }
 
   private initMap(L: any): void {
-    this.map = L.map('map').setView([51.505, -0.09], 13);
+    this.map = L.map('map')
+        .setView([46.801111, 8.226667], 8);
 
-	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		maxZoom: 19,
-		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-	}).addTo(this.map);
-
-	const marker = L.marker([51.5, -0.09]).addTo(this.map)
-		.bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();
-
-	const circle = L.circle([51.508, -0.11], {
-		color: 'red',
-		fillColor: '#f03',
-		fillOpacity: 0.5,
-		radius: 500
-	}).addTo(this.map).bindPopup('I am a circle.');
-
-	const polygon = L.polygon([
-		[51.509, -0.08],
-		[51.503, -0.06],
-		[51.51, -0.047]
-	]).addTo(this.map).bindPopup('I am a polygon.');
-
-
-	const popup = L.popup()
-		.setLatLng([51.513, -0.09])
-		.setContent('I am a standalone popup.')
-		.openOn(this.map);
-
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap'
+    }).addTo(this.map);
   }
 }

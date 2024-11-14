@@ -1,0 +1,11 @@
+.search-container {
+  z-index: 2600;
+
+  form {
+    width: 24rem !important;
+  }
+}
+
+.inset-y-1 {
+  top: -13em !important;
+}
