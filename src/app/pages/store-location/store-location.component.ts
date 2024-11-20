@@ -2,39 +2,44 @@ import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FinderInputComponent } from "../../shared/components/finder-input/finder-input.component";
 import { LocationsService } from '../../shared/services/locations.service';
+import { LoadingComponent } from '../../shared/components/loading/loading.component';
 
 @Component({
   selector: 'app-store-location',
   standalone: true,
-  imports: [FinderInputComponent],
+  imports: [FinderInputComponent, LoadingComponent],
   templateUrl: './store-location.component.html',
   styleUrl: './store-location.component.css'
 })
 export class StoreLocationComponent implements OnInit {
   private map: any;
-
   private latitude: number = 0;
   private longitude: number = 0;
+  isLoading: boolean = true;
 
   constructor(
     @Inject(PLATFORM_ID)
     private platformId: Object,
     private locationService: LocationsService
-  ) {
-      this.locationService.getPosition().then(pos => {
-        this.latitude = pos.lat;
-        this.longitude = pos.lng;
-      });
-  }
+  ) {}
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      import('leaflet').then((leaflet) => { this.loadConfigMap(leaflet); });
+      import('leaflet').then((leaflet) => { this.loadMap(leaflet); });
     }
   }
 
+  loadMap(leaflet: any): void {
+    this.getLocationPosition();
+    setTimeout(() => {
+      console.log('mapa cargado');
+      this.loadConfigMap(leaflet);
+      this.isLoading = false;
+    }, 2000);
+
+  }
+
   loadConfigMap(leaflet: any): void {
-    console.log('User position: ', this.latitude + ', ' + this.longitude);
     this.map = leaflet.map('map').setView([this.latitude, this.longitude], 13);
 
     leaflet.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -44,5 +49,12 @@ export class StoreLocationComponent implements OnInit {
     leaflet.marker([this.latitude, this.longitude]).addTo(this.map)
     .bindPopup('Disfrutas desde este lugar')
     .openPopup();
+  }
+
+  getLocationPosition(): void {
+    this.locationService.getPosition().then(pos => {
+      this.latitude = pos.lat;
+      this.longitude = pos.lng;
+    });
   }
 }
