@@ -2,11 +2,10 @@ import { NgClass, NgStyle } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-loading',
-  standalone: true,
-  imports: [NgStyle, NgClass],
-  templateUrl: './loading.component.html',
-  styleUrl: './loading.component.css'
+    selector: 'app-loading',
+    imports: [NgStyle],
+    templateUrl: './loading.component.html',
+    styleUrl: './loading.component.css'
 })
 export class LoadingComponent {
   @Input() size: number = 16; // Tamaño predeterminado (en unidades Tailwind)

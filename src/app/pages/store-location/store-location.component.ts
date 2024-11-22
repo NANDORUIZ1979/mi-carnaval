@@ -1,15 +1,14 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, isStandalone, OnInit, PLATFORM_ID } from '@angular/core';
 import { FinderInputComponent } from "../../shared/components/finder-input/finder-input.component";
 import { LocationsService } from '../../shared/services/locations.service';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
 
 @Component({
-  selector: 'app-store-location',
-  standalone: true,
-  imports: [FinderInputComponent, LoadingComponent],
-  templateUrl: './store-location.component.html',
-  styleUrl: './store-location.component.css'
+    selector: 'app-store-location',
+    imports: [FinderInputComponent, LoadingComponent],
+    templateUrl: './store-location.component.html',
+    styleUrl: './store-location.component.css'
 })
 export class StoreLocationComponent implements OnInit {
   private map: any;
@@ -30,12 +29,7 @@ export class StoreLocationComponent implements OnInit {
   }
 
   loadMap(leaflet: any): void {
-    this.getLocationPosition();
-    setTimeout(() => {
-      console.log('mapa cargado');
-      this.loadConfigMap(leaflet);
-      this.isLoading = false;
-    }, 2000);
+    this.getLocationPosition(leaflet);
 
   }
 
@@ -51,10 +45,14 @@ export class StoreLocationComponent implements OnInit {
     .openPopup();
   }
 
-  getLocationPosition(): void {
+  getLocationPosition(leaflet: any): void {
     this.locationService.getPosition().then(pos => {
       this.latitude = pos.lat;
       this.longitude = pos.lng;
-    });
+    }).finally(() => {
+      console.log('Mapa cargado');
+      this.loadConfigMap(leaflet);
+      this.isLoading = false;
+    })
   }
 }

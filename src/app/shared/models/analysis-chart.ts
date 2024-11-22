@@ -1,5 +1,5 @@
-interface AnalysisChart {
-    año: number;
-    país: string;
+export interface AnalysisChart {
+    anio: number;
+    pais: string;
     total: number;
 }
