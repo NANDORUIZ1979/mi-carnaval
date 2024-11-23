@@ -3,6 +3,7 @@ import { Component, Inject, isStandalone, OnInit, PLATFORM_ID } from '@angular/c
 import { FinderInputComponent } from "../../shared/components/finder-input/finder-input.component";
 import { LocationsService } from '../../shared/services/locations.service';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
+import { DeviceInfoService } from '../../core/services/device-info.service';
 
 @Component({
     selector: 'app-store-location',
@@ -14,18 +15,24 @@ export class StoreLocationComponent implements OnInit {
   private map: any;
   private latitude: number = 0;
   private longitude: number = 0;
-  isLoading: boolean = true;
+  private visitorId: string = '';
+  public isLoading: boolean = true;
 
   constructor(
     @Inject(PLATFORM_ID)
     private platformId: Object,
-    private locationService: LocationsService
-  ) {}
+    private locationService: LocationsService,
+    private deviceInfoService: DeviceInfoService
+  ) {
+  }
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       import('leaflet').then((leaflet) => { this.loadMap(leaflet); });
     }
+
+    this.visitorId = this.deviceInfoService.getVisitorId();
+    console.log('visitorId', this.visitorId);
   }
 
   loadMap(leaflet: any): void {

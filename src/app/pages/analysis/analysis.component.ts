@@ -5,6 +5,8 @@ import { ChartJsUtils } from '../../shared/utils/ChartJsUtils';
 import { AnalysisChart } from '../../shared/models/analysis-chart';
 import { Console } from 'console';
 import { finalize } from 'rxjs';
+import { LoadingComponent } from "../../shared/components/loading/loading.component";
+import { environment } from '../../../environments/environment';
 
 export interface DoughnutModel {
   total: number;
@@ -14,12 +16,13 @@ export interface DoughnutModel {
 @Component({
     selector: 'app-analysis',
     templateUrl: './analysis.component.html',
-    styleUrl: './analysis.component.css'
+    styleUrl: './analysis.component.css',
+    imports: [LoadingComponent]
 })
 export class AnalysisComponent implements OnInit {
+  public isLoading: boolean = true;
   public chart: any = null;
   private utils: ChartJsUtils;
-  private data: AnalysisChart[] = [];
   private doughnutModel: DoughnutModel[] = [];
 
   constructor(
@@ -27,6 +30,7 @@ export class AnalysisComponent implements OnInit {
   ){
     this.utils = new ChartJsUtils();
     this.getAnalysis();
+    console.log('ENVIRONMENT', environment.key_openapi);
   }
 
   ngOnInit(): void {
@@ -38,13 +42,13 @@ export class AnalysisComponent implements OnInit {
       .pipe(finalize( () => this.setChart()))
       .subscribe(analisisPasto => {
         this.doughnutModel = this.groupData(analisisPasto);
-      })
+      });
+
   }
 
   setChart(): void {
+    this.isLoading = false;
     console.log('setChart');
-    const DATA_COUNT = 5;
-    const NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
 
     const labels = this.doughnutModel.map(m => m.pais);
     const data = {

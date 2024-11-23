@@ -1,4 +1,4 @@
-<div class="flex items-center justify-center inset-y-0 left-0 h-full">
+<div class="flex h-screen w-full justify-center items-center">
   <div
     class="rounded-full animate-spin"
     [ngStyle]="{
@@ -6,6 +6,12 @@
       height: size + 'rem',
       borderWidth: size / 4 + 'px'
     }"
-    [class]="'border-t-${color}'">
+    [ngClass]="[
+      'border-solid',
+      'border-t-' + color,
+      'border-r-transparent',
+      'border-b-' + borderColor,
+      'border-l-' + borderColor
+    ]">
   </div>
 </div>
