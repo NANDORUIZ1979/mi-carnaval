@@ -1,28 +1,78 @@
-# MiCarnaval
+# Mi Carnaval
+## Instalación y Configuración
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.11.
+Este archivo README proporciona instrucciones sobre cómo instalar las dependencias, ejecutar un servidor Angular, y crear componentes, servicios, pipes y otros elementos esenciales en un proyecto Angular.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## **1. Prerrequisitos**
 
-## Code scaffolding
+Antes de comenzar, asegúrate de tener instalados:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Node.js:** [Descargar e instalar Node.js](https://nodejs.org/)
+- **Angular CLI:** Instala Angular CLI globalmente ejecutando el siguiente comando:
 
-## Build
+  ```bash
+  npm install -g @angular/cli
+  ```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+---
 
-## Running unit tests
+## **2. Clonar Desplegar el proyecto**
+Clonar el código del repositorio desde la rama stage:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+git clone https://github.com/MaicolAnder/mi-carnaval/tree/stage
+```
 
-## Running end-to-end tests
+Cambiar el directorio al proyecto:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+cd mi-carnaval
+```
 
-## Further help
+Instalas dependencias si no lo has hecho ya:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-# mi-carnaval
+```bash
+npm install
+```
+
+Para desplegar el proyecto, ejecuta el siguiente comando:
+
+```bash
+ng serve
+```
+
+Este comando iniciará un servidor web en el puerto 4200. Puedes acceder a la aplicación en la dirección `http://localhost:4200/`.
+
+---
+
+## **3. Crear componentes, servicios, pipes y otros elementos esenciales**
+
+Para crear un componente, ejecuta el siguiente comando:
+
+```bash
+ng generate component ruta/nombre-del-componente
+```
+
+Para crear un servicio, ejecuta el siguiente comando:
+
+```bash
+ng generate service ruta/nombre-del-servicio
+```
+
+Para crear un pipe, ejecuta el siguiente comando:
+
+```bash
+ng generate pipe ruta/nombre-del-pipe
+```
+
+## **3. APIS AWS y Servicios**
+
+### **3 Analisis carnaval**
+
+- https://y1tomtyldh.execute-api.us-east-1.amazonaws.com/analisis/pasto
+
+---
+
+## For P4S Elimininatoria hackaton

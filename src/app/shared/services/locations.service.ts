@@ -15,7 +15,10 @@ export class LocationsService {
     return new Promise((resolve, reject) => {
       if (isPlatformBrowser(this.platformId)) {
         navigator.geolocation.getCurrentPosition(
-          resp => resolve({ lng: resp.coords.longitude, lat: resp.coords.latitude }),
+          resp => {
+            console.log(resp);
+            resolve({ lng: resp.coords.longitude, lat: resp.coords.latitude })
+          },
           err => reject(err)
         );
       } else {

@@ -1,6 +1,11 @@
 <div class="map-container">
-    <div id="map" #map></div>
+  @if(isLoading){
+    <app-loading [size]="12" [color]="'red-500'" [borderColor]="'teal-400'"></app-loading>
+  }
+  <div id="map" #map></div>
 </div>
 
 <!-- Falta poder mover el mapa, este elemento está sobre toda la pantalla -->
-<app-finder-input></app-finder-input>
+@if(!isLoading){
+  <app-finder-input></app-finder-input>
+}
